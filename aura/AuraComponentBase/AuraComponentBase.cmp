@@ -1,0 +1,5 @@
+<aura:component abstract="true" extensible="true">
+   <lightning:messages />
+   <lightning:notificationsLibrary aura:id="notifyLib"/>
+   {!v.body}
+</aura:component>
