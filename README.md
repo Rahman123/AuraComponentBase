@@ -1,7 +1,7 @@
 # AuraComponentBase
 
 AuraComponentBase is a super/base component for Salesforce Lightning component framework.
-The intention is provide common functionalities to be used sub components. I am also trying to demonstrate an example of Lightning component coding standard, e.g. Component controller is used to manage UI level behaviours and /actions, while the helper class handles business logic and server side communication.   
+The intention is to provide common functionalities to be used sub components. I am also trying to demonstrate an example of Lightning component coding standard, e.g. Component controller is used to manage UI level behaviours and actions, while the helper class handles business logic and server side communications.   
 
 Current functions:
 * Display messages using lightning:notificationsLibrary.
@@ -17,15 +17,17 @@ Sample.cmp
                 extends="c:AuraComponentBase"
                 controller="SampleApexController"
                 access="global" >
-<aura:attribute name="recordId" type="String"/>
-<aura:attribute name="items" type="List"/>
-<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+  
+  <aura:attribute name="recordId" type="String"/>
+  <aura:attribute name="items" type="List"/>
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
 </aura:component>
 
 
 SampleController.js
 ({
+
     doInit : function(component, event, helper) {
       //show spinner
       helper.togglerSpinner(component);
@@ -38,10 +40,14 @@ SampleController.js
     }
 })
 
+
 SampleHelper.js
 ({
-    loadItems : function(component, event, helper, recordId, callback) {
+
+        loadItems : function(component, event, helper, recordId, callback) {
+       
         var action = component.get('c.loadItems');
+        
         action.setParams({"recordId": recordId});
 
         action.setCallback(this, function(response) {
@@ -53,7 +59,7 @@ SampleHelper.js
                 }
             } else {
                 helper.handleActionError(component, response, function() {
-                 	  console.log('Error on calling getLocation: ' + response);                                                               });
+                 	  console.log('Error on calling getLocation: ' + response);                                                                           });
             }
         });
         $A.enqueueAction(action);
@@ -61,9 +67,13 @@ SampleHelper.js
 })
 
 SampleApexController.cls
+
+
 public with sharing class SampleApexController {
+
     @AuraEnabled
     public static List<Item__c> loadItems(Id recordId) {
         return [SELECT Id, Name FROM Item__c WHERE parentId__c = :recordId];
     }
+
 }
