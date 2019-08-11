@@ -1,5 +1,8 @@
 <aura:component abstract="true" extensible="true">
+<div>
    <lightning:messages />
+   <lightning:spinner aura:id="spinner" variant="brand" size="medium" class="slds-hide" alternativeText=""/>  
    <lightning:notificationsLibrary aura:id="notifyLib"/>
    {!v.body}
+</div>
 </aura:component>
