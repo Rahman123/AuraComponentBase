@@ -1,4 +1,9 @@
 ({
+    togglerSpinner : function(component) {
+        var spinner = component.getSuper().find("spinner");
+        $A.util.toggleClass(spinner, 'slds-hide');
+    },
+    
     handleActionError : function(component, response, callback) {
         //debugger;
         
