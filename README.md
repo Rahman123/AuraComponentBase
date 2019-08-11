@@ -26,24 +26,24 @@ Sample.cmp
 
 SampleController.js
 ({
-	doInit : function(component, event, helper) {
-		 //show spinner
-     helper.togglerSpinner(component);
-     var recordId = component.get('v.recordId');
-     helper.loadItems(component, event, helper, recordId, function(result){
+    doInit : function(component, event, helper) {
+      //show spinner
+      helper.togglerSpinner(component);
+      var recordId = component.get('v.recordId');
+      helper.loadItems(component, event, helper, recordId, function(result){
         component.set('v.items', result);
         //hide spinner
         helper.togglerSpinner(component);
-     });   
-	}
+      });   
+    }
 })
 
 SampleHelper.js
 ({
-	loadItems : function(component, event, helper, recordId, callback) {
+    loadItems : function(component, event, helper, recordId, callback) {
         var action = component.get('c.loadItems');
         action.setParams({"recordId": recordId});
-        
+
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (component.isValid() && state === "SUCCESS") {
@@ -57,10 +57,10 @@ SampleHelper.js
             }
         });
         $A.enqueueAction(action);
-	}
+    }
 })
 
-SampleApexController
+SampleApexController.cls
 public with sharing class SampleApexController {
     @AuraEnabled
     public static List<Item__c> loadItems(Id recordId) {
