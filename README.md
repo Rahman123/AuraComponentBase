@@ -30,12 +30,12 @@ SampleController.js
 
     doInit : function(component, event, helper) {
       //show spinner
-      helper.togglerSpinner(component);
+      helper.toggleSpinner(component);
       var recordId = component.get('v.recordId');
       helper.loadItems(component, event, helper, recordId, function(result){
         component.set('v.items', result);
         //hide spinner
-        helper.togglerSpinner(component);
+        helper.toggleSpinner(component);
       });   
     }
 })
