@@ -1,5 +1,5 @@
 ({
-    togglerSpinner : function(component) {
+    toggleSpinner : function(component) {
         var spinner = component.getSuper().find("spinner");
         $A.util.toggleClass(spinner, 'slds-hide');
     },
